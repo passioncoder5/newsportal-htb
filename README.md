@@ -91,12 +91,13 @@ Two open TCP ports were identified:
 
 *Figure 1 – Nmap full port scan output (172.17.0.2)*
 
-<img width="429" height="438" alt="image" src="https://github.com/user-attachments/assets/df278ec8-73a8-471f-880b-c9cb1c99bf92" />
+<img width="913" height="935" alt="Screenshot From 2026-04-25 19-44-26" src="https://github.com/user-attachments/assets/df395bfa-dffd-42ab-b134-91e11070a44c" />
 
 
 *Figure 2 – Nmap service version detection results*
 
-<img width="675" height="305" alt="image" src="https://github.com/user-attachments/assets/4d3fbf91-7fc9-418e-b138-0af34ae2156b" />
+<img width="915" height="409" alt="Screenshot From 2026-04-25 19-44-59" src="https://github.com/user-attachments/assets/495c4190-57b2-4734-a163-009a5997fedf" />
+
 
 
 #### Web Directory Enumeration
@@ -111,12 +112,13 @@ Gobuster discovered the `/newsportal/` application directory (HTTP 301 redirect)
 
 *Figure 3 – Apache default page on port 80*
 
-<img width="458" height="480" alt="image" src="https://github.com/user-attachments/assets/41ce955e-9596-47e8-b1b7-0e7609cd786c" />
+<img width="970" height="1016" alt="Screenshot From 2026-04-25 19-45-42" src="https://github.com/user-attachments/assets/2195271d-340b-4d4c-a1ce-56733d066fef" />
 
 
 *Figure 4 – Gobuster directory enumeration results*
 
-<img width="406" height="372" alt="image" src="https://github.com/user-attachments/assets/211fb315-1fe5-4c72-a6e1-d15dea69bced" />
+<img width="928" height="855" alt="Screenshot From 2026-04-25 19-50-03" src="https://github.com/user-attachments/assets/6ff494d6-6cdf-4202-aec3-05488daff986" />
+
 
 
 ---
@@ -136,17 +138,20 @@ Navigating to `http://172.17.0.2/newsportal/` revealed a PHP-based News Portal a
 
 *Figure 5 – NewsPortal login page*
 
-<img width="473" height="412" alt="image" src="https://github.com/user-attachments/assets/9ed347d2-d5ea-4ad9-bd6a-2e479f1de48d" />
+<img width="974" height="854" alt="Screenshot From 2026-04-25 19-51-10" src="https://github.com/user-attachments/assets/7e296a22-1d29-446e-aae1-6508780ccdb2" />
+
 
 
 *Figure 6 – User registration page*
 
-<img width="473" height="412" alt="image" src="https://github.com/user-attachments/assets/c46183bc-bebf-4081-9360-2419b4f49c56" />
+<img width="974" height="854" alt="Screenshot From 2026-04-25 21-07-37" src="https://github.com/user-attachments/assets/b0dc5542-d545-4e2d-991f-05fec54ec0d4" />
+
 
 
 *Figure 7 – Authenticated user home page (/newsportal/userhome.php)*
 
-<img width="495" height="433" alt="image" src="https://github.com/user-attachments/assets/cc4897d6-e734-4350-b5c0-db0ad9390c1a" />
+
+<img width="974" height="854" alt="Screenshot From 2026-04-25 21-08-51" src="https://github.com/user-attachments/assets/c358ea9b-ea5e-4bb2-b357-8db58a336352" />
 
 
 ---
@@ -175,26 +180,31 @@ Full database exfiltration is possible without authentication. The `newsportal` 
 
 *Figure 8 – Burp Suite request to /newsportal/search.php (intercepted)*
 
-<img width="501" height="440" alt="image" src="https://github.com/user-attachments/assets/8937607e-87ce-41f2-b51b-4390df8b60ef" />
+<img width="974" height="854" alt="Screenshot From 2026-04-25 21-12-44" src="https://github.com/user-attachments/assets/9956e3f0-5ceb-4dc3-a624-3760896f804f" />
+
 
 *Figure 9 – SQLMap confirming boolean-based blind, time-based blind, and UNION injection*
 
-<img width="676" height="409" alt="image" src="https://github.com/user-attachments/assets/f62054a4-ceb3-4ca8-8c86-a78a04d17de5" />
+<img width="913" height="550" alt="Screenshot From 2026-04-25 21-17-41" src="https://github.com/user-attachments/assets/5b8a98ff-17f9-49c5-b284-c73d7638fc3f" />
+
 
 
 *Figure 10 – SQLMap database enumeration: 5 databases identified*
 
-<img width="676" height="409" alt="image" src="https://github.com/user-attachments/assets/a8aa2ce1-b588-4c9a-8dac-f76e773a8e55" />
+
+<img width="913" height="550" alt="Screenshot From 2026-04-25 21-18-37" src="https://github.com/user-attachments/assets/598ef62e-6fc7-4b37-90ae-0e1044841201" />
 
 
 *Figure 11 – SQLMap table enumeration for 'newsportal' database*
 
-<img width="676" height="409" alt="image" src="https://github.com/user-attachments/assets/0689dcf8-4ea8-4015-8dc3-64cff11e54a8" />
+<img width="913" height="550" alt="Screenshot From 2026-04-25 21-19-27" src="https://github.com/user-attachments/assets/db9f27f2-f842-4090-bc90-e8a5a5df3277" />
 
 
 *Figure 12 – SQLMap admin table dump: cracked credentials (password123 / editor123)*
 
-<img width="595" height="439" alt="image" src="https://github.com/user-attachments/assets/2dc17527-ca08-4502-a9d6-6842ce46cf3d" />
+<img width="923" height="675" alt="Screenshot From 2026-04-25 22-21-05" src="https://github.com/user-attachments/assets/0fecf329-8698-471c-a6c7-72b39fbdcd88" />
+
+
 
 #### Remediation
 
@@ -226,16 +236,21 @@ Remote code execution achieved on the underlying server. Combined with the SQL i
 
 *Figure 13 – Admin 'Add News' panel with shell.php selected for upload*
 
-<img width="623" height="440" alt="image" src="https://github.com/user-attachments/assets/9f92365e-a7db-4d46-814a-d16183f76154" />
+<img width="1432" height="1006" alt="Screenshot From 2026-04-25 23-46-56" src="https://github.com/user-attachments/assets/09a4dd6e-7349-4737-9eb4-9b32a3e1a1be" />
+
 
 
 *Figure 14 – Netcat listener receiving reverse shell as www-data (uid=33/www-data)*
 
-<img width="679" height="367" alt="image" src="https://github.com/user-attachments/assets/295fe842-8162-4a3b-a990-bdbb90af82bd" />
+<img width="974" height="990" alt="Screenshot From 2026-04-25 22-30-15" src="https://github.com/user-attachments/assets/6a23e144-8668-4323-921c-0fb78a933336" />
+
+<img width="940" height="507" alt="Screenshot From 2026-04-25 22-32-02" src="https://github.com/user-attachments/assets/b0473fec-3afd-431f-aa09-bbbfb43a2919" />
+
 
 *Figure 15 – TTY upgrade via script; shell stabilised with stty raw -echo;fg*
 
-<img width="679" height="367" alt="image" src="https://github.com/user-attachments/assets/04e29fd4-82e7-49ae-9857-b5fb1a21dcbb" />
+<img width="940" height="507" alt="Screenshot From 2026-04-25 22-35-49" src="https://github.com/user-attachments/assets/2d6585d2-9455-453e-a085-10322f14245e" />
+
 
 
 #### Remediation
@@ -274,17 +289,19 @@ sudo find . -exec /bin/bash -p \; -quit
 
 *Figure 16 – sudo -l output: www-data has NOPASSWD /usr/bin/find*
 
-<img width="673" height="192" alt="image" src="https://github.com/user-attachments/assets/cd460fba-f701-4a88-b9a2-a12e0a8395b2" />
+<img width="917" height="261" alt="Screenshot From 2026-04-25 23-49-19" src="https://github.com/user-attachments/assets/10becfb3-fec3-40c8-b368-d9889cbd7ed2" />
+
 
 
 *Figure 17 – GTFOBins: find sudo shell spawn technique*
 
-<img width="675" height="399" alt="image" src="https://github.com/user-attachments/assets/98626381-1cba-4691-ae61-9d8449865c18" />
+<img width="979" height="579" alt="Screenshot From 2026-04-25 23-43-41" src="https://github.com/user-attachments/assets/84d8d797-5628-46bc-bf24-51319c6e611d" />
+
 
 
 *Figure 18 – Root shell confirmed; user.txt and root.txt captured*
 
-<img width="675" height="254" alt="image" src="https://github.com/user-attachments/assets/c8117f09-41b5-46b8-a1dc-e6bf44f5ae25" />
+<img width="815" height="301" alt="Screenshot From 2026-04-25 23-51-39" src="https://github.com/user-attachments/assets/2c35cf01-7e69-4c85-aba3-9ccf7a7d8424" />
 
 
 #### Remediation
